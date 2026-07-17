@@ -15,6 +15,7 @@ public class TransactionContext {
 
     private boolean completed;
     private boolean failed;
+    private String failureReason;
 
     public TransactionContext(ATM atm, Backend backend, Card card) {
         this.atm = atm;
@@ -54,6 +55,10 @@ public class TransactionContext {
         return failed;
     }
 
+    public String getFailureReason() {
+        return failureReason;
+    }
+
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
     }
@@ -72,5 +77,9 @@ public class TransactionContext {
 
     public void setFailed(boolean failed) {
         this.failed = failed;
+    }
+
+    public void setFailureReason(String failureReason) {
+        this.failureReason = failureReason;
     }
 }

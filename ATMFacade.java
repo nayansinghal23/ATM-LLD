@@ -29,7 +29,12 @@ public class ATMFacade {
                 context.setWithdrawalAmount(scanner.nextInt());
             }
 
-            state.execute(context);
+            try {
+                state.execute(context);
+            } catch (Exception e) {
+                context.setFailed(true);
+                context.setFailureReason(e.getMessage());
+            }
         }
 
         if (context.isFailed()) {
