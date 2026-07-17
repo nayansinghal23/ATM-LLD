@@ -10,6 +10,10 @@ public class ValidateWithdrawalAmount implements State {
         ATM atm = context.getATM();
         int withdrawalAmount = context.getWithdrawalAmount();
 
+        if(withdrawalAmount <= 0) {
+            throw new IllegalStateException("Withdrawal amount should be greater than zero.");
+        }
+
         if(atm.getThresholdAmount() < withdrawalAmount) {
             throw new IllegalStateException("ATM doesn't hold enough money!!!");
         }
