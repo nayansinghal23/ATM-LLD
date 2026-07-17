@@ -1,0 +1,10 @@
+package emums;
+
+public enum ATMState {
+    READY_FOR_TRANSACTION,
+    CARD_AND_PIN_READING,
+    AMOUNT_WITHDRAWAL,
+    WITHDRAWAL_CHECK,
+    CASH_DISPENSE,
+    EJECT_CARD,
+}
