@@ -27,6 +27,12 @@ public class NodeBackendServer implements Backend {
     @Override
     public boolean validateUserBankAmount(ValidateUserBankAmountDTO dto) {
         // GET : to verify if the user has enough balance.
+        if(dto.getCard() == null) {
+            throw new IllegalStateException("Card should not be null.");
+        }
+        if(dto.getWithdrawalAmount() <= 0) {
+            throw new IllegalStateException("Withdrawal amount should be greater than zero.");
+        }
         return true;
     }
 

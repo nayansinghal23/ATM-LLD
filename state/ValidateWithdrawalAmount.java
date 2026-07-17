@@ -14,7 +14,7 @@ public class ValidateWithdrawalAmount implements State {
             throw new IllegalStateException("ATM doesn't hold enough money!!!");
         }
 
-        ValidateUserBankAmountDTO dto = new ValidateUserBankAmountDTO(context.getCard());
+        ValidateUserBankAmountDTO dto = new ValidateUserBankAmountDTO(context.getCard(), withdrawalAmount);
         boolean isEnoughMoney = context.getBackend().validateUserBankAmount(dto);
 
         if(!isEnoughMoney) {
