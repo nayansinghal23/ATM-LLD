@@ -1,5 +1,6 @@
 package state;
 
+import DTO.ATMThresholdAmountDTO;
 import DTO.DispenseCashDTO;
 import emums.ATMState;
 import models.Card;
@@ -25,8 +26,9 @@ public class CashDispensingState implements State {
         }
         System.out.println("Your cash has been dispensed successfully.");
 
+        ATMThresholdAmountDTO thresholdAmountDTO = new ATMThresholdAmountDTO(atmId);
         context.getATM().setThresholdAmount(
-            context.getATM().getThresholdAmount() - withdrawalAmount
+            context.getBackend().getATMThresholdAmount(thresholdAmountDTO)
         );
         System.out.println("Update ATM's threshold successfully.");
         context.getATM().setState(new EjectCardState());
