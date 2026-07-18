@@ -2,6 +2,7 @@ import java.util.Date;
 
 import backend.Backend;
 import backend.NodeBackendServer;
+import facade.WithdrawalFacade;
 import models.ATM;
 import models.Card;
 import state.TransactionContext;
@@ -14,15 +15,10 @@ public class Main {
     
         TransactionContext context = new TransactionContext(atm, backend, card);
         ATMFacade facade = new ATMFacade();
-        facade.withdraw(context);
+        facade.transact(new WithdrawalFacade(context));
     }
 }
 
 /**
- * What if the backend fails after the user's account is debited but before cash is dispensed?
- * How would you make dispensing idempotent?
- * How would you support multiple transaction types?
- * How would you model hardware failures like a cash jam?
- * How would you prevent two concurrent withdrawals on the same ATM?
- * How would you persist and restore the state machine after a restart?
+ * How would you support multiple transaction types? - Strategy Design Pattern
  */
