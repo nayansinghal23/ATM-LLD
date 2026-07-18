@@ -6,7 +6,7 @@ import models.ATM;
 
 public class ValidateWithdrawalAmount implements State {
     @Override
-    public void execute(TransactionContext context) {
+    public void execute(TransactionContext context, InputProvider inputProvider) {
         ATM atm = context.getATM();
         int withdrawalAmount = context.getWithdrawalAmount();
 

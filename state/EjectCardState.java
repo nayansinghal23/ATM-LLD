@@ -9,8 +9,9 @@ public class EjectCardState implements State {
     }
     
     @Override
-    public void execute(TransactionContext context) {
+    public void execute(TransactionContext context, InputProvider inputProvider) {
         System.out.println("Take your card back.");
         context.getATM().setState(new ReadyForTransactionState());
+        context.setCompleted(true);
     }
 }

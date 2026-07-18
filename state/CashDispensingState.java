@@ -12,7 +12,7 @@ public class CashDispensingState implements State {
     }
 
     @Override
-    public void execute(TransactionContext context) {
+    public void execute(TransactionContext context, InputProvider inputProvider) {
         int atmId = context.getATM().getATMId();
         int transactionId = context.getTransactionId();
         int withdrawalAmount = context.getWithdrawalAmount();

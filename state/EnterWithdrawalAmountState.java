@@ -4,7 +4,8 @@ import emums.ATMState;
 
 public class EnterWithdrawalAmountState implements State {
     @Override
-    public void execute(TransactionContext context) {
+    public void execute(TransactionContext context, InputProvider inputProvider) {
+        context.setWithdrawalAmount(inputProvider.readWithdrawalAmount());
         context.getATM().setState(new ValidateWithdrawalAmount());
     }
 

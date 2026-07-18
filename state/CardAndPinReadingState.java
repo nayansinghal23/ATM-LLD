@@ -12,13 +12,15 @@ public class CardAndPinReadingState implements State {
     }
 
     @Override
-    public void execute(TransactionContext context) {
-        System.out.println("Reading card and verifying yoour entered PIN ...");
+    public void execute(TransactionContext context, InputProvider inputProvider) {
+        System.out.println("Reading card and verifying your entered PIN ...");
         Card card = context.getCard();
 
         if(card.getExpiryDate().before(new Date())) {
             throw new IllegalStateException("Card is already expired.");
         }
+
+        context.setEnteredPIN(inputProvider.readPin());
 
         if(card.getPin() != context.getEnteredPIN()) {
             throw new IllegalStateException("Entered PIN doesn't match. Please try again later.");

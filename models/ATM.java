@@ -1,5 +1,7 @@
 package models;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import state.State;
 import DTO.ChangeATMStateDTO;
 import backend.Backend;
@@ -7,6 +9,7 @@ import backend.Backend;
 public class ATM {
     private final int atmId;
     private final Backend backend;
+    private final AtomicBoolean transactionInProgress = new AtomicBoolean(false);
     private State state;
     private int thresholdAmount;
 
@@ -42,5 +45,13 @@ public class ATM {
 
     public void setThresholdAmount(int thresholdAmount) {
         this.thresholdAmount = thresholdAmount;
+    }
+
+    public boolean tryBeginTransaction() {
+        return transactionInProgress.compareAndSet(false, true);
+    }
+
+    public void endTransaction() {
+        transactionInProgress.set(false);
     }
 }

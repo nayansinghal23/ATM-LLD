@@ -10,7 +10,7 @@ public class ReadyForTransactionState implements State {
     }
 
     @Override
-    public void execute(TransactionContext context) {
+    public void execute(TransactionContext context, InputProvider inputProvider) {
         System.out.println("Initializing a new transaction...");
         int atmId = context.getATM().getATMId();
         InitializeTransactionDTO dto = new InitializeTransactionDTO(atmId);
